@@ -22,17 +22,21 @@ public class HttpUtil {
                     connection.setConnectTimeout(8000);
                     connection.setReadTimeout(8000);
                     InputStream in = connection.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(in,"UTF-8"));
                     StringBuilder response = new StringBuilder();
                     String line;
+                    response.append('\0');
                     while((line = reader.readLine())!= null){
                         response.append(line);
                     }
+
+                    String line2=response.toString();
                     if(listener != null){
-                        listener.onFinish(response.toString());
+                        listener.onFinish(line2);
                     }
                 } catch(Exception e){
                     if(listener != null){
+                        //listener.onFinish(response.toString());
                         listener.onError(e);
                     }
                 } finally{

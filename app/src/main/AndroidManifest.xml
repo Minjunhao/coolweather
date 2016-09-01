@@ -21,6 +21,8 @@
                 </intent-filter>
 
             </activity>
+        <activity android:name="com.rotel.coolweather.activity.WeatherActivity" >
+            </activity>
     </application>
 
 </manifest>
